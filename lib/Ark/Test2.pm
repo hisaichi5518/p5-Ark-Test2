@@ -2,6 +2,7 @@ package Ark::Test2;
 use Mouse;
 use Plack::Test qw(test_psgi);
 use HTTP::Request::Common;
+use Ark::Test2::Role::Context;
 
 our $VERSION = "0.01";
 
@@ -35,11 +36,39 @@ sub post {
     $self->request(POST(@_));
 }
 
-sub ctx_requeset {}
+sub ctx_request {
+    my ($self, $req) = @_;
 
-sub ctx_get {}
+    unless (Ark::Context->meta->does_role('Ark::Test2::Role::Context')) {
+        # Role! Role! Role!
+        Ark::Context->meta->make_mutable;
+        Ark::Test2::Role::Context->meta->apply( Ark::Context->meta );
+        Ark::Context->meta->make_immutable;
+    }
 
-sub ctx_post {}
+    my $res = $self->request($req);
+    my $c   = Ark::Test2::_context();
+
+    wantarray ? ($res, $c) : $c;
+}
+
+sub ctx_get {
+    my $self = shift;
+    $self->ctx_request(GET(@_));
+}
+
+sub ctx_post {
+    my $self = shift;
+    $self->ctx_request(POST(@_));
+}
+
+{
+    my $c;
+    sub _context {
+        $c = $_[0] if $_[0];
+        $c;
+    }
+}
 
 1;
 __END__

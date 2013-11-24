@@ -22,6 +22,8 @@ use_ok "Ark::Test2";
         elsif ($c->req->method eq "POST") {
             $c->res->body("POST OK");
         }
+
+        $c->stash->{fuga} = "hoge";
     }
 }
 
@@ -52,6 +54,27 @@ subtest "post" => sub {
     my $res =  $client->post("/");
 
     is $res->content, "POST OK";
+};
+
+subtest "ctx_get" => sub {
+    my $client = Ark::Test2->new(app => $app);
+    my ($res, $c) =  $client->ctx_get("/");
+
+    is_deeply $c->stash, {fuga => "hoge"};
+};
+
+subtest "ctx_post" => sub {
+    my $client = Ark::Test2->new(app => $app);
+    my ($res, $c) =  $client->ctx_post("/");
+
+    is_deeply $c->stash, {fuga => "hoge"};
+};
+
+subtest "ctx_post: not list context" => sub {
+    my $client = Ark::Test2->new(app => $app);
+    my $c = $client->ctx_post("/");
+
+    is_deeply $c->stash, {fuga => "hoge"};
 };
 
 done_testing;
