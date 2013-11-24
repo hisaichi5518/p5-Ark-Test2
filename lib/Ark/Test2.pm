@@ -3,6 +3,7 @@ use Mouse;
 use Plack::Test qw(test_psgi);
 use HTTP::Request::Common;
 use Ark::Test2::Role::Context;
+use Ark::Test2::App;
 
 our $VERSION = "0.01";
 
@@ -12,6 +13,11 @@ has app => (
 );
 
 no Mouse;
+
+sub app_setup {
+    my $class = shift;
+    Ark::Test2::App->setup(@_);
+}
 
 sub request {
     my ($self, $req) = @_;

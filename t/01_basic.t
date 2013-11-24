@@ -3,6 +3,7 @@ use warnings;
 
 use Test::More;
 use_ok "Ark::Test2";
+use Ark::Test2::App;
 
 {
     package TestApp;
@@ -27,15 +28,10 @@ use_ok "Ark::Test2";
     }
 }
 
-sub build_app {
-    my $app = TestApp->new();
-    $app->load_component($_) for qw(TestApp::Controller::Root);
-    $app->setup;
-
-    $app;
-}
-
-my $app = build_app();
+my $app = Ark::Test2->app_setup(
+    app_name   => "TestApp",
+    components => [qw(TestApp::Controller::Root)],
+);
 
 subtest "app" => sub {
     my $client = Ark::Test2->new(app => $app);
