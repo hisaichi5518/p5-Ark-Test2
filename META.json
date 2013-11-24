@@ -1,5 +1,5 @@
 {
-   "abstract" : "It's new $module",
+   "abstract" : "testing Ark app.",
    "author" : [
       "This library is free software; you can redistribute it and/or modify"
    ],
@@ -43,7 +43,7 @@
       },
       "runtime" : {
          "requires" : {
-            "perl" : "5.008005"
+            "perl" : "5.008001"
          }
       },
       "test" : {
@@ -53,5 +53,19 @@
       }
    },
    "release_status" : "unstable",
-   "version" : "0.01"
+   "resources" : {
+      "bugtracker" : {
+         "web" : "https://github.com/hisaichi5518/p5-Ark-Test2/issues"
+      },
+      "homepage" : "https://github.com/hisaichi5518/p5-Ark-Test2",
+      "repository" : {
+         "type" : "git",
+         "url" : "git://github.com/hisaichi5518/p5-Ark-Test2.git",
+         "web" : "https://github.com/hisaichi5518/p5-Ark-Test2"
+      }
+   },
+   "version" : "0.01",
+   "x_contributors" : [
+      "hisaichi5518 <hisaichi5518@gmail.com>"
+   ]
 }

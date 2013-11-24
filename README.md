@@ -1,10 +1,25 @@
 # NAME
 
-Ark::Test2 - It's new $module
+Ark::Test2 - testing Ark app.
 
 # SYNOPSIS
 
     use Ark::Test2;
+    use Test::More;
+
+    my $app = Ark::Test2->setup(
+        app_name   => "MyApp",
+        components => [qw(MyApp::Controller::Root)],
+    );
+
+    my $client = Ark::Test2->new(app => $app);
+    my ($res, $c) = $client->get("/");
+
+    ok $res->header('X-API-Status');
+    is_deeply $c->stash->{json}, {
+      status => 200,
+      result => {...},
+    };
 
 # DESCRIPTION
 
