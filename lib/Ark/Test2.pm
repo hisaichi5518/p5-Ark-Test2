@@ -43,11 +43,11 @@ sub post {
     $self->request(POST(@_));
 }
 
+
 sub ctx_request {
     my ($self, $req) = @_;
 
     unless (Ark::Context->meta->does_role('Ark::Test2::Role::Context')) {
-        # Role! Role! Role!
         Ark::Context->meta->make_mutable;
         Ark::Test2::Role::Context->meta->apply( Ark::Context->meta );
         Ark::Context->meta->make_immutable;
