@@ -3,6 +3,7 @@ use strict;
 use warnings;
 use FindBin;
 use Path::Class;
+use Mouse::Util;
 
 sub setup {
     my ($class, %args) = @_;
@@ -10,7 +11,7 @@ sub setup {
     my $app_name   = $args{app_name};
     my $components = $args{components};
 
-    my $app = Mouse::load_class($app_name)->new;
+    my $app = Mouse::Util::load_class($app_name)->new;
     $app->load_component($_) for @$components;
 
     # TODO: setup_minimal
