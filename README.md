@@ -7,7 +7,7 @@ Ark::Test2 - testing Ark app.
     use Ark::Test2;
     use Test::More;
 
-    my $app = Ark::Test2->setup(
+    my $app = Ark::Test2->app_setup(
         app_name   => "MyApp",
         components => [qw(MyApp::Controller::Root)],
     );
