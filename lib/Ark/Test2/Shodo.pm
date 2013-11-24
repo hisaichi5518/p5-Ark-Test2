@@ -53,7 +53,7 @@ Ark::Test2::Shodo - testing Ark app and write document.
   use Ark::Test2::Shodo;
   use Test::More;
 
-  my $app = Ark::Test2::Shodo->app_setup(
+  my $app = Ark::Test2::Shodo->setup_app(
       app_name   => "MyApp",
       components => [qw(MyApp::Controller::Root)],
   );

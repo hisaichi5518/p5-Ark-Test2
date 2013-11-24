@@ -20,7 +20,7 @@ use Ark::Test2::App;
     }
 }
 
-my $app = Ark::Test2::Shodo->app_setup(
+my $app = Ark::Test2::Shodo->setup_app(
     app_name   => "TestApp",
     components => [qw(TestApp::Controller::Root)],
 );

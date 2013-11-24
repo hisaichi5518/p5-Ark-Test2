@@ -28,7 +28,7 @@ use Ark::Test2::App;
     }
 }
 
-my $app = Ark::Test2->app_setup(
+my $app = Ark::Test2->setup_app(
     app_name   => "TestApp",
     components => [qw(TestApp::Controller::Root)],
 );

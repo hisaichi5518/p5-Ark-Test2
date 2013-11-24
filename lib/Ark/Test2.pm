@@ -15,7 +15,7 @@ has app => (
 
 no Mouse;
 
-sub app_setup {
+sub setup_app {
     my $class = shift;
     Ark::Test2::App->setup(@_);
 }
@@ -91,7 +91,7 @@ Ark::Test2 - testing Ark app.
   use Ark::Test2;
   use Test::More;
 
-  my $app = Ark::Test2->app_setup(
+  my $app = Ark::Test2->setup_app(
       app_name   => "MyApp",
       components => [qw(MyApp::Controller::Root)],
   );
